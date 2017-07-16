@@ -16,7 +16,7 @@
     <br/><br/>
     <form th:object="${snip}" method="POST" action="/deletethis">
         <input type="number" class="form-control" th:field="*{id}" placeholder="snippet id"/>
-        <input type="text" class="form-control" th:field="*{languages}" placeholder="secrete pass"/>
+        <input type="password" class="form-control" th:field="*{languages}" placeholder="secrete pass"/>
         <input type="submit" id="input_button" class="form-control btn btn-danger" value="delete this snip"/>
     </form>
 

@@ -8,6 +8,18 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/paper/bootstrap.min.css"/>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Title</title>
+
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            bottom: 10px;
+            left: 10px;
+            border-radius: 5px;
+        }
+    </style>
+
 </head>
 <body>
 
@@ -15,16 +27,77 @@
 <div class="container">
 
     <br/><br/>
-    <form th:object="${snippet}" method="POST" action="/save">
+
+    <form id="form" th:object="${snippet}" method="POST" action="/save">
         <input type="text" class="form-control" th:field="*{title}" placeholder="Title"/>
         <input type="text" class="form-control" th:field="*{languages}" placeholder="Languages"/>
-        <textarea id="text_area" th:field="*{code}" class="form-control" placeholder="Write your code here."
-                  onkeydown="if(event.keyCode===9){let v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)
-                  +'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}"></textarea>
-        <input type="submit" id="input_button" class="form-control btn btn-success"/>
+
+        <br/>
+
+        <span class="dropdown">
+            <button class="btn btn-xs btn-default dropdown-toggle" type="button" data-toggle="dropdown">editor mode
+                <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                <li><a href="#" id="none" class="btn btn-default">none</a></li>
+                <li class="divider"></li>
+                <li><a href="#" id="javaScript" class="btn btn-default">JavaScript</a></li>
+                <li><a href="#" id="html" class="btn btn-default">html</a></li>
+            </ul>
+        </span>
+
+        <span class="dropdown">
+            <button class="btn btn-xs btn-default dropdown-toggle" type="button" data-toggle="dropdown">Theme
+                <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                <li><a href="#" id="light" class="btn btn-default">light</a></li>
+                <li><a href="#" id="dark" class="btn btn-default">dark</a></li>
+            </ul>
+        </span>
+
+        show gutter <input id="gutter" type="checkbox"/>
+
+        <input id="hidden" th:field="*{code}" type="hidden"/>
+
+        <br/><br/>
+
+        <div class="well" style="position: relative; height: 300px;">
+            <div id="editor"></div>
+        </div>
+
+        <button id="submit" class="form-control btn btn-success" >submit</button>
+
     </form>
 
-</div>
 
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.8/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    let ID = id => document.getElementById(id);
+
+    ID('gutter').checked = true;
+
+    let editor = ace.edit("editor");
+    editor.getSession().setMode('');
+
+    $('#gutter').change( () => {
+        if (ID('gutter').checked)
+            editor.renderer.setShowGutter(true);
+        else editor.renderer.setShowGutter(false);
+    });
+
+    $('#submit').click( () => {
+        ID('hidden').value = editor.getSession().getValue();
+        $('#form').submit();
+    });
+    $('#none').click( () => editor.getSession().setMode('') );
+    $('#javaScript').click( () => editor.getSession().setMode('ace/mode/javascript') );
+    $('#html').click( () => editor.getSession().setMode('ace/mode/html') );
+
+
+    $('#light').click( () => editor.setTheme("") );
+    $('#dark').click( () => editor.setTheme("ace/theme/monokai") );
+
+</script>
 </body>
 </html>
