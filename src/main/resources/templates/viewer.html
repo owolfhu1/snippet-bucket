@@ -20,13 +20,13 @@
         <div class="container">
             <br/><br/>
 
-            <div class="well" style="position: relative;">
+            <div class="well" style="position: relative; border: none;">
 
                 <h2 th:text="${snip.title}"></h2>
                 <h4 th:text="${snip.languages}"></h4>
                 <pre style="width: 100%; border-radius: 4px; padding: 10px;"><code th:text="${snip.code}"></code></pre>
 
-            </div>
+            </div class="well">
 
             <a href="/"><button class="btn btn-lg btn-info">return to index</button></a>
 
