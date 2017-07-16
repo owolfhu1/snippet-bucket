@@ -25,7 +25,8 @@
             <div class="well" style="position: relative; border: none;">
                 <center><h2 th:text="${snip.title}"></h2></center>
                 <h4 th:text="${snip.languages}"></h4>
-                <pre style="width: 100%; border-radius: 4px; padding: 10px;"><code th:text="${snip.code}"></code></pre>
+
+                <pre style="width: 100%;"><code th:text="${snip.code}"></code></pre>
 
                 <!-- comment accordion -->
                 <button id="accordion" class="accordion"> Comments (<th:block th:text="${comments.size()}">size error</th:block>)</button>
