@@ -53,8 +53,12 @@ public class SnippitController {
 
         if (snippet.getTitle().length() > 0 && snippet.getLanguages().length() == 0)
             snippets = snippetRepository.findAllByTitleContaining(snippet.getTitle());
+
+
         else if (snippet.getLanguages().length() > 0 && snippet.getTitle().length() == 0)
             snippets = snippetRepository.findAllByLanguagesContaining(snippet.getTitle());
+
+
         else if (snippet.getTitle().length() > 0 && snippet.getLanguages().length() > 0) {
             snippets = snippetRepository.findAllByTitleContaining(snippet.getTitle());
             for (int i = snippets.size() - 1; i > -1; i--) {

@@ -18,8 +18,8 @@
     <!--<a href="/add"><button class="form-control btn btn-info">add a snippet</button></a>-->
 
     <form th:object="${snippet}" method="POST" action="/search">
-        <input type="text" class="form-control" th:field="*{title}" placeholder="search titles"/>
-        <input type="text" class="form-control" th:field="*{languages}" placeholder="search languages"/>
+        <input value="" type="text" class="form-control" th:field="*{title}" placeholder="search titles"/>
+        <input value="" type="text" class="form-control" th:field="*{languages}" placeholder="search languages"/>
         <input type="submit" class="form-control btn btn-success" value="snippet search"/>
     </form>
 
