@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org ">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/paper/bootstrap.min.css"/>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>Title</title>
+</head>
+<body>
+
+
+<div class="container">
+    <br/><br/>
+        <table class="table table-striped">
+            <tr class="active">
+                <td>title</td>
+                <td>languages</td>
+                <td>button</td>
+            </tr>
+            <th:block th:each="snip : ${list}">
+                <tr>
+                    <td th:text="${snip.title}"></td>
+                    <td th:text="${snip.languages}"></td>
+                    <td><a th:href="@{ '/view/' + ${snip.id} }">
+                        <button class="btn btn-sm btn-success">
+                            view snippet
+                        </button>
+                        </a>
+                    </td>
+                </tr>
+            </th:block>
+        </table>
+</div>
+
+</body>
+</html>
