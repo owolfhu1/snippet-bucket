@@ -67,7 +67,7 @@ public class SnippitController {
             snippets = snippetRepository.findAllByTitleContaining(snippet.getTitle());
             for (int i = snippets.size() - 1; i > -1; i--) {
                 snippets.get(i).setCode("");
-                if (!snippets.get(i).getLanguages().contains(snippet.getLanguages()))
+                if (!snippets.get(i).getLanguages().toLowerCase().contains(snippet.getLanguages().toLowerCase()))
                     snippets.remove(i);
             }
         }
