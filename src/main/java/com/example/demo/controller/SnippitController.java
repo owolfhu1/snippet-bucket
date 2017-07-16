@@ -73,4 +73,19 @@ public class SnippitController {
         return "viewer";
     }
 
+    @RequestMapping("/delete")
+    public String delete(Model model) {
+        model.addAttribute("snip", new Snippet());
+        return "delete";
+    }
+
+    @RequestMapping("/deletethis")
+    public String deleteThis(Snippet snippet) {
+        //personally hashed pass
+        if (snippet.getLanguages().hashCode() == 1635423)
+            if (snippetRepository.exists(snippet.getId()))
+                snippetRepository.delete(snippet.getId());
+        return "redirect:/";
+    }
+
 }
