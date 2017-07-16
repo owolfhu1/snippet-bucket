@@ -8,20 +8,70 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/paper/bootstrap.min.css"/>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script>
+
+        <style>
+            button.accordion {  background-color: #eee; color: #444; cursor: pointer; padding: 18px;
+                width: 100%; border: none; text-align: left; outline: none; font-size: 15px; transition: 0.4s; }
+            button.accordion.active, button.accordion:hover { background-color: #ddd; }
+            div.panel { padding: 0 18px; display: none; background-color: white; }
+        </style>
+
+
         <title th:text="${snip.title}">Title error</title>
     </head>
     <body>
         <div class="container">
             <br/><br/>
             <div class="well" style="position: relative; border: none;">
-                <h2 th:text="${snip.title}"></h2>
+                <center><h2 th:text="${snip.title}"></h2></center>
                 <h4 th:text="${snip.languages}"></h4>
                 <pre style="width: 100%; border-radius: 4px; padding: 10px;"><code th:text="${snip.code}"></code></pre>
+
+                <!-- comment accordion -->
+                <button id="accordion" class="accordion"> Comments (<th:block th:text="${comments.size()}">size error</th:block>)</button>
+                <div class="panel">
+                    <br/>
+                    <th:block th:each="c : ${comments}">
+                        <p>
+                            <b><th:block th:text="${c.name}">username error</th:block></b>:
+                            <span style="border-radius: 8px; background: #ffeea8; padding: 3px;">
+                            <th:block th:text="${c.body}">body error</th:block>
+                        </span>
+                        </p>
+                    </th:block>
+                    <form th:object="${comment}" method="POST" action="/comment">
+                        <br/>
+                        Leave a comment: <input type="submit" value="submit" style="display: none;"/>
+                        <input type="text" class="form-control" th:field="*{name}" placeholder="name"/>
+                        <input type="text" class="form-control" th:field="*{body}" placeholder="comment body"/>
+                        <input type="hidden" name="snippetId" th:value="${snip.id}"/>
+                    </form>
+                    <br/>
+                </div>
+                <!-- comment accordion -->
+
             </div>
-            <a href="/"><button class="btn btn-lg btn-info">return to index</button></a>
+
+
+
+            <center><a href="/"><button class="btn btn-lg btn-info">return to index</button></a></center>
         </div>
+
+        <script>
+        let acc = document.getElementById('accordion');
+            acc.onclick = function() {
+                this.classList.toggle('active');
+                let panel = this.nextElementSibling;
+                if (panel.style.display === 'block') {
+                    panel.style.display = 'none';
+                } else {
+                    panel.style.display = 'block';
+                }
+            };
+        </script>
+
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
 
     </body>
 </html>

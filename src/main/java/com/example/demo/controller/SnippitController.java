@@ -1,7 +1,9 @@
 package com.example.demo.controller;
 
 
+import com.example.demo.model.Comment;
 import com.example.demo.model.Snippet;
+import com.example.demo.repository.CommentRepository;
 import com.example.demo.repository.SnippetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,8 @@ public class SnippitController {
 
     @Autowired
     SnippetRepository snippetRepository;
+    @Autowired
+    CommentRepository commentRepository;
 
     @RequestMapping("/")
     public String index(Model model) {
@@ -74,7 +78,15 @@ public class SnippitController {
     @RequestMapping("/view/{id}")
     public String view(Model model, @PathVariable("id") int id) {
         model.addAttribute("snip", snippetRepository.findOne(id));
+        model.addAttribute("comments", commentRepository.findAllBySnippetId(id));
+        model.addAttribute("comment", new Comment());
         return "viewer";
+    }
+
+    @RequestMapping("/comment")
+    public String comment(Model model, Comment comment) {
+        commentRepository.save(comment);
+        return "redirect:/view/" + comment.getSnippetId();
     }
 
     @RequestMapping("/delete")
