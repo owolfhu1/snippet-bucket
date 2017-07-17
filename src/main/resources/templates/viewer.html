@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/paper/bootstrap.min.css"/>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/>
+        <link rel="stylesheet" href="https://raw.githubusercontent.com/isagalaev/highlight.js/master/src/styles/rainbow.css"/>
 
         <style>
             button.accordion {  background-color: #eee; color: #444; cursor: pointer; padding: 18px;
@@ -26,7 +27,11 @@
                 <center><h2 th:text="${snip.title}"></h2></center>
                 <h4 th:text="${snip.languages}"></h4>
 
-                <pre style="width: 100%;"><code th:text="${snip.code}"></code></pre>
+                <pre style="width: 100%;"><code th:text="${snip.code}">
+                    public class User {
+                        this.user = something;
+                    }
+                </code></pre>
 
                 <!-- comment accordion -->
                 <button id="accordion" class="accordion"> Comments (<th:block th:text="${comments.size()}">size error</th:block>)</button>
@@ -39,6 +44,11 @@
                             <th:block th:text="${c.body}">body error</th:block>
                         </span>
                         </p>
+                        <script th:inline="javascript">
+                            /*<![CDATA[*/
+                            console.log([[${c.id}]]);
+                            /*]]>*/
+                        </script>
                     </th:block>
                     <form th:object="${comment}" method="POST" action="/comment">
                         <br/>
