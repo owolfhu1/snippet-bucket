@@ -18,6 +18,27 @@
             border-radius: 5px;
         }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.8/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://raw.githubusercontent.com/ajaxorg/ace/master/lib/ace/theme/gob.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://raw.githubusercontent.com/ajaxorg/ace/master/lib/ace/theme/clouds.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://raw.githubusercontent.com/ajaxorg/ace/master/lib/ace/theme/ambiance.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://raw.githubusercontent.com/ajaxorg/ace/master/lib/ace/theme/tomorrow.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://raw.githubusercontent.com/ajaxorg/ace/master/lib/ace/theme/vibrant_ink.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://raw.githubusercontent.com/ajaxorg/ace/master/lib/ace/theme/terminal.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://raw.githubusercontent.com/ajaxorg/ace/master/lib/ace/theme/github.js" type="text/javascript" charset="utf-8"></script>
+   <link rel="stylesheet" href="https://raw.githubusercontent.com/ajaxorg/ace/master/lib/ace/theme/gob.css"/>
+    <link rel="stylesheet" href="https://raw.githubusercontent.com/ajaxorg/ace/master/lib/ace/theme/clouds.css"/>
+    <link rel="stylesheet" href="https://raw.githubusercontent.com/ajaxorg/ace/master/lib/ace/theme/ambiance.css"/>
+    <link rel="stylesheet" href="https://raw.githubusercontent.com/ajaxorg/ace/master/lib/ace/theme/tomorrow.css"/>
+    <link rel="stylesheet" href="https://raw.githubusercontent.com/ajaxorg/ace/master/lib/ace/theme/vibrant_ink.css"/>
+    <link rel="stylesheet" href="https://raw.githubusercontent.com/ajaxorg/ace/master/lib/ace/theme/terminal.css"/>
+    <link rel="stylesheet" href="https://raw.githubusercontent.com/ajaxorg/ace/master/lib/ace/theme/github.css"/>
+
+    <script src="https://raw.githubusercontent.com/ajaxorg/ace/master/lib/ace/mode/java_highlight_rules.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://raw.githubusercontent.com/ajaxorg/ace/master/lib/ace/mode/java.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://raw.githubusercontent.com/ajaxorg/ace/master/lib/ace/mode/ruby_highlight_rules.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://raw.githubusercontent.com/ajaxorg/ace/master/lib/ace/mode/ruby.js" type="text/javascript" charset="utf-8"></script>
+
 </head>
 <body>
 
@@ -32,69 +53,118 @@
 
         <br/>
 
+        <!-- mode -->
         <span class="dropdown">
             <button class="btn btn-xs btn-default dropdown-toggle" type="button" data-toggle="dropdown">editor mode
                 <span class="caret"></span></button>
             <ul class="dropdown-menu">
                 <li><a href="#" id="none" class="btn btn-default">none</a></li>
                 <li class="divider"></li>
+                <li><a href="#" id="java" class="btn btn-default">Java</a></li>
                 <li><a href="#" id="javaScript" class="btn btn-default">JavaScript</a></li>
-                <li><a href="#" id="html" class="btn btn-default">html</a></li>
+                <li><a href="#" id="html" class="btn btn-default">HTML</a></li>
+                <li><a href="#" id="ruby" class="btn btn-default">ruby</a></li>
             </ul>
         </span>
+        <!-- mode -->
 
+        <!-- theme -->
         <span class="dropdown">
             <button class="btn btn-xs btn-default dropdown-toggle" type="button" data-toggle="dropdown">Theme
                 <span class="caret"></span></button>
             <ul class="dropdown-menu">
                 <li><a href="#" id="light" class="btn btn-default">light</a></li>
+                <li><a href="#" id="tomorrow" class="btn btn-default">tomorrow</a></li>
+                <li><a href="#" id="github" class="btn btn-default">github</a></li>
+                <li class="divider"></li>
                 <li><a href="#" id="dark" class="btn btn-default">dark</a></li>
+                <li><a href="#" id="green" class="btn btn-default">green + black</a></li>
+                <li><a href="#" id="ambiance" class="btn btn-default">ambiance</a></li>
+                <li><a href="#" id="vibrant_ink" class="btn btn-default">vibrant ink</a></li>
+                <li><a href="#" id="terminal" class="btn btn-default">terminal</a></li>
             </ul>
         </span>
+        <!-- theme -->
 
+        <!-- size -->
+        <span class="dropdown">
+            <button class="btn btn-xs btn-default dropdown-toggle" type="button" data-toggle="dropdown">font size
+                <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                <li><a href="#" id="8px" class="btn btn-default">8px</a></li>
+                <li><a href="#" id="12px" class="btn btn-default">12px</a></li>
+                <li><a href="#" id="18px" class="btn btn-default">18px</a></li>
+                <li><a href="#" id="24px" class="btn btn-default">24px</a></li>
+            </ul>
+        </span>
+        <!-- size -->
+
+        <!-- check boxes -->
         show gutter <input id="gutter" type="checkbox"/>
+        show whitespace <input id="whitespace" type="checkbox"/>
+        <!-- check boxes -->
 
+        <!-- hidden for form data -->
         <input id="hidden" th:field="*{code}" type="hidden"/>
+        <!-- hidden for form data -->
+
 
         <br/><br/>
 
-        <div class="well" style="position: relative; height: 300px;">
+        <!-- editor -->
+        <div class="well" style="position: relative; height: 400px;">
             <div id="editor"></div>
         </div>
+        <!-- editor -->
 
+        <!-- submit -->
         <button id="submit" class="form-control btn btn-success" >submit</button>
+        <!-- submit -->
 
     </form>
 
 
 
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.8/ace.js" type="text/javascript" charset="utf-8"></script>
+
+
 <script>
     let ID = id => document.getElementById(id);
-
     ID('gutter').checked = true;
-
+    ID('editor').style.fontSize='12px';
     let editor = ace.edit("editor");
-    editor.getSession().setMode('');
 
-    $('#gutter').change( () => {
-        if (ID('gutter').checked)
-            editor.renderer.setShowGutter(true);
-        else editor.renderer.setShowGutter(false);
-    });
+    $('#whitespace').change( () => editor.setShowInvisibles(ID('gutter').checked) );
+
+    $('#gutter').change( () => editor.renderer.setShowGutter(ID('gutter').checked) );
 
     $('#submit').click( () => {
         ID('hidden').value = editor.getSession().getValue();
         $('#form').submit();
     });
+
+    //mode buttons
     $('#none').click( () => editor.getSession().setMode('') );
     $('#javaScript').click( () => editor.getSession().setMode('ace/mode/javascript') );
     $('#html').click( () => editor.getSession().setMode('ace/mode/html') );
+    $('#java').click( () => editor.getSession().setMode('ace/mode/java') );
+    $('#ruby').click( () => editor.getSession().setMode('ace/mode/ruby') );
 
+    //size buttons
+    $('#8px').click( () => ID('editor').style.fontSize='8px' );
+    $('#12px').click( () => ID('editor').style.fontSize='12px' );
+    $('#18px').click( () => ID('editor').style.fontSize='18px' );
+    $('#24px').click( () => ID('editor').style.fontSize='24px' );
 
-    $('#light').click( () => editor.setTheme("") );
+    //theme buttons
+    $('#light').click( () => editor.setTheme("ace/theme/clouds") );
     $('#dark').click( () => editor.setTheme("ace/theme/monokai") );
+    $('#green').click( () => editor.setTheme("ace/theme/gob") );
+    $('#ambiance').click( () => editor.setTheme("ace/theme/ambiance") );
+    $('#vibrant_ink').click( () => editor.setTheme("ace/theme/vibrant_ink") );
+    $('#tomorrow').click( () => editor.setTheme("ace/theme/tomorrow") );
+    $('#terminal').click( () => editor.setTheme("ace/theme/terminal") );
+    $('#github').click( () => editor.setTheme("ace/theme/github") );
 
 </script>
 </body>
