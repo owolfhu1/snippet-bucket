@@ -32,6 +32,15 @@
                     }
                 </code></pre>
 
+                <!-- delete link in console -->
+                <script th:inline="javascript">
+                    /*<![CDATA[*/
+                    let thisId = [[${snip.id}]];
+                    console.log('http://orions-snips.herokuapp.com/delete/' + thisId);
+                    /*]]>*/
+                </script>
+                <!-- delete link in console -->
+
                 <!-- comment accordion -->
                 <button id="accordion" class="accordion"> Comments (<th:block th:text="${comments.size()}">size error</th:block>)</button>
                 <div class="panel">
@@ -43,14 +52,14 @@
                             <th:block th:text="${c.body}">body error</th:block>
                         </span>
                         </p>
-                        <!-- show comment id in console -->
+                        <!-- delete link in console -->
                         <script th:inline="javascript">
                             /*<![CDATA[*/
                             let thisId = [[${c.id}]];
                             console.log('http://orions-snips.herokuapp.com/deletec/' + thisId);
                             /*]]>*/
                         </script>
-                        <!-- show comment id in console -->
+                        <!-- delete link in console -->
                     </th:block>
                     <form th:object="${comment}" method="POST" action="/comment">
                         <br/>

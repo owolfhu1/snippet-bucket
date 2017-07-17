@@ -102,7 +102,11 @@ public class SnippitController {
         return "redirect:/";
     }
 
-
+    @RequestMapping("/delete/{id}")
+    public String deleteId(Model model, @PathVariable("id") int id) {
+        model.addAttribute("snip", new Snippet().returnId(id));
+        return "delete";
+    }
 
 
     @RequestMapping("/deletec")
