@@ -44,7 +44,7 @@
 <body>
 
 
-<div class="container">
+<div id="wrapper" class="container">
 
     <br/><br/>
 
@@ -103,7 +103,14 @@
         <!-- check boxes -->
         show gutter <input id="gutter" type="checkbox"/>
         show whitespace <input id="whitespace" type="checkbox"/>
+        expand <input id="expand" type="checkbox"/>
+        tall window <input id="tall" type="checkbox"/>
         <!-- check boxes -->
+
+        <!-- search -->
+        <input id="select_input" type="text" class="form-inline" placeholder="search param"/>
+        <button id="select_button" type="button" class="btn btn-default btn-xs">highlight</button>
+        <!-- search -->
 
         <!-- hidden for form data -->
         <input id="hidden" th:field="*{code}" type="hidden"/>
@@ -112,7 +119,7 @@
         <br/><!-- a break --><br/>
 
         <!-- editor -->
-        <div class="well" style="position: relative; height: 400px;">
+        <div id="editor_well" class="well" style="position: relative; height: 400px;">
             <div id="editor"></div>
         </div>
         <!-- editor -->
@@ -138,10 +145,31 @@
 
     $('#gutter').change( () => editor.renderer.setShowGutter(ID('gutter').checked) );
 
+    $('#expand').change( () => {
+        if (ID('expand').checked)
+            ID('wrapper').className = "";
+        else ID('wrapper').className = "container";
+    });
+
+    $('#tall').change( () => {
+        if (ID('tall').checked)
+            ID('editor_well').style.height = "700px";
+        else ID('editor_well').style.height = "400px";
+
+        ID('editor').style.top = '10px';
+        ID('editor').style.bottom = '10px';
+        ID('editor').style.right = '10px';
+        ID('editor').style.left = '10px';
+
+    });
+
     $('#submit').click( () => {
         ID('hidden').value = editor.getSession().getValue();
         $('#form').submit();
     });
+
+    //select
+    $('#select_button').click( () => editor.findAll(ID('select_input').value) );
 
     //mode buttons
     $('#none').click( () => editor.getSession().setMode('') );
