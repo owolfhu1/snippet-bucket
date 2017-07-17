@@ -104,7 +104,6 @@
         show gutter <input id="gutter" type="checkbox"/>
         show whitespace <input id="whitespace" type="checkbox"/>
         expand <input id="expand" type="checkbox"/>
-        tall window <input id="tall" type="checkbox"/>
         <!-- check boxes -->
 
         <!-- search -->
@@ -119,7 +118,7 @@
         <br/><!-- a break --><br/>
 
         <!-- editor -->
-        <div id="editor_well" class="well" style="position: relative; height: 400px;">
+        <div id="editor_well" class="well" style="position: relative; height: 500px;">
             <div id="editor"></div>
         </div>
         <!-- editor -->
@@ -149,18 +148,6 @@
         if (ID('expand').checked)
             ID('wrapper').className = "";
         else ID('wrapper').className = "container";
-    });
-
-    $('#tall').change( () => {
-        if (ID('tall').checked)
-            ID('editor_well').style.height = "700px";
-        else ID('editor_well').style.height = "400px";
-
-        ID('editor').style.top = '10px';
-        ID('editor').style.bottom = '10px';
-        ID('editor').style.right = '10px';
-        ID('editor').style.left = '10px';
-
     });
 
     $('#submit').click( () => {
