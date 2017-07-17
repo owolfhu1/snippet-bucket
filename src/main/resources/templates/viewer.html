@@ -69,13 +69,18 @@
                         </script>
                         <!-- delete link in console -->
                     </th:block>
-                    <form th:object="${comment}" method="POST" action="/comment">
-                        <br/>
-                        Leave a comment: <input type="submit" value="submit" style="display: none;"/>
+                    <form id="comment_form" th:object="${comment}" method="POST" action="/comment">
+                        <br/><input type="submit" value="submit" style="display: none;"/>
+                        Leave a comment: <a id="comment_link">submit</a>
                         <input type="text" class="form-control" th:field="*{name}" placeholder="name"/>
                         <input type="text" class="form-control" th:field="*{body}" placeholder="comment body"/>
                         <input type="hidden" name="snippetId" th:value="${snip.id}"/>
                     </form>
+
+                    <script>
+                        $('#comment_link')click( () => $('#comment_form').submit() );
+                    </script>
+
                     <br/>
                 </div>
                 <!-- comment accordion -->
