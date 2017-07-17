@@ -108,7 +108,6 @@ public class SnippitController {
         return "delete";
     }
 
-
     @RequestMapping("/deletec")
     public String deleteC(Model model) {
         model.addAttribute("snip", new Snippet());
@@ -123,11 +122,15 @@ public class SnippitController {
 
     @RequestMapping("/deletecomment")
     public String deleteComment(Snippet snippet) {
+        //for redirect
+        int id = -1;
+        if (commentRepository.exists(snippet.getId()))
+            id = commentRepository.findOne(snippet.getId()).getSnippetId();
         //personally hashed pass
         if (snippet.getLanguages().hashCode() == 1635423)
             if (commentRepository.exists(snippet.getId()))
                 commentRepository.delete(snippet.getId());
-        return "redirect:/";
+        return "redirect:/view/" + id;
     }
 
 
