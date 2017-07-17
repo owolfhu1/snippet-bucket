@@ -32,12 +32,11 @@
                 <h4 th:text="${snip.languages}"></h4>
 
                 <pre style="width: 100%;"><code th:text="${snip.code}">
-                    @IfYouSeeThis
+                   < @IfYouSeeThis
                     public class SomethingWentWrong{
                         private int errorPage = 420;
                         public String justAnExample = null;
                         Long leet = 1337;
-                        private ArrayList<String[]> arrays = new ArrayList<>();
 
                         //do this 5 times!
                         @SomethingHere("/someString/{stuff}")
