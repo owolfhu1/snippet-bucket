@@ -47,7 +47,8 @@
                         <!-- show comment id in console -->
                         <script th:inline="javascript">
                             /*<![CDATA[*/
-                            console.log('http://orions-snips.herokuapp.com/deletec/' + [[${c.id}]]);
+                            let thisId = [[${c.id}]];
+                            console.log('http://orions-snips.herokuapp.com/deletec/' + thisId);
                             /*]]>*/
                         </script>
                         <!-- show comment id in console -->
