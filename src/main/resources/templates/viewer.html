@@ -18,6 +18,8 @@
 
         <script>
             let thisId;
+            let thisBody;
+            let count = 0;
         </script>
 
         <title th:text="${snip.title}">Title error</title>
@@ -59,6 +61,9 @@
                         <script th:inline="javascript">
                             /*<![CDATA[*/
                             thisId = [[${c.id}]];
+                            thisBody = [[${c.body}]];
+                            console.log('comment# ' + ++count);
+                            console.log(thisBody);
                             console.log('http://orions-snips.herokuapp.com/deletec/' + thisId);
                             /*]]>*/
                         </script>
