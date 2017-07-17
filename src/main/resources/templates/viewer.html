@@ -16,6 +16,9 @@
             div.panel { padding: 0 18px; display: none; background-color: white; }
         </style>
 
+        <script>
+            let thisId;
+        </script>
 
         <title th:text="${snip.title}">Title error</title>
     </head>
@@ -35,7 +38,7 @@
                 <!-- delete link in console -->
                 <script th:inline="javascript">
                     /*<![CDATA[*/
-                    let thisId = [[${snip.id}]];
+                    thisId = [[${snip.id}]];
                     console.log('http://orions-snips.herokuapp.com/delete/' + thisId);
                     /*]]>*/
                 </script>
@@ -55,7 +58,7 @@
                         <!-- delete link in console -->
                         <script th:inline="javascript">
                             /*<![CDATA[*/
-                            let thisId = [[${c.id}]];
+                            thisId = [[${c.id}]];
                             console.log('http://orions-snips.herokuapp.com/deletec/' + thisId);
                             /*]]>*/
                         </script>
