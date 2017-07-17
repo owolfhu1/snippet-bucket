@@ -21,6 +21,11 @@ public class Snippet {
         this.id = id;
     }
 
+    public Snippet returnId(int id) {
+        this.id = id;
+        return this;
+    }
+
     public String getCode() {
         return code;
     }

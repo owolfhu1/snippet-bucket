@@ -111,6 +111,12 @@ public class SnippitController {
         return "deletecomment";
     }
 
+    @RequestMapping("/deletec/{id}")
+    public String deleteCId(Model model, @PathVariable("id") int id) {
+        model.addAttribute("snip", new Snippet().returnId(id));
+        return "deletecomment";
+    }
+
     @RequestMapping("/deletecomment")
     public String deleteComment(Snippet snippet) {
         //personally hashed pass
