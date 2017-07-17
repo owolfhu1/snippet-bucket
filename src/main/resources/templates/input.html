@@ -53,64 +53,64 @@
         <input type="text" class="form-control" th:field="*{languages}" placeholder="Languages"/>
 
         <br/>
+        <center>
+            <!-- mode -->
+            <span class="dropdown">
+                <button class="btn btn-xs btn-default dropdown-toggle" type="button" data-toggle="dropdown">editor mode
+                    <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li><a href="#" id="none" class="btn btn-default">none</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#" id="java" class="btn btn-default">Java</a></li>
+                    <li><a href="#" id="javaScript" class="btn btn-default">JavaScript</a></li>
+                    <li><a href="#" id="html" class="btn btn-default">HTML</a></li>
+                    <li><a href="#" id="ruby" class="btn btn-default">ruby</a></li>
+                </ul>
+            </span>
+            <!-- mode -->
+            &nbsp;
+            <!-- theme -->
+            <span class="dropdown">
+                <button class="btn btn-xs btn-default dropdown-toggle" type="button" data-toggle="dropdown">Theme
+                    <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li><a href="#" id="light" class="btn btn-default">light</a></li>
+                    <li><a href="#" id="tomorrow" class="btn btn-default">tomorrow</a></li>
+                    <li><a href="#" id="github" class="btn btn-default">github</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#" id="dark" class="btn btn-default">dark</a></li>
+                    <li><a href="#" id="green" class="btn btn-default">green + black</a></li>
+                    <li><a href="#" id="ambiance" class="btn btn-default">ambiance</a></li>
+                    <li><a href="#" id="vibrant_ink" class="btn btn-default">vibrant ink</a></li>
+                    <li><a href="#" id="terminal" class="btn btn-default">terminal</a></li>
+                </ul>
+            </span>
+            <!-- theme -->
+            &nbsp;
+            <!-- size -->
+            <span class="dropdown">
+                <button class="btn btn-xs btn-default dropdown-toggle" type="button" data-toggle="dropdown">font size
+                    <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li><a href="#" id="8px" class="btn btn-default">8px</a></li>
+                    <li><a href="#" id="12px" class="btn btn-default">12px</a></li>
+                    <li><a href="#" id="18px" class="btn btn-default">18px</a></li>
+                    <li><a href="#" id="24px" class="btn btn-default">24px</a></li>
+                </ul>
+            </span>
+            <!-- size -->
 
-        <!-- mode -->
-        <span class="dropdown">
-            <button class="btn btn-xs btn-default dropdown-toggle" type="button" data-toggle="dropdown">editor mode
-                <span class="caret"></span></button>
-            <ul class="dropdown-menu">
-                <li><a href="#" id="none" class="btn btn-default">none</a></li>
-                <li class="divider"></li>
-                <li><a href="#" id="java" class="btn btn-default">Java</a></li>
-                <li><a href="#" id="javaScript" class="btn btn-default">JavaScript</a></li>
-                <li><a href="#" id="html" class="btn btn-default">HTML</a></li>
-                <li><a href="#" id="ruby" class="btn btn-default">ruby</a></li>
-            </ul>
-        </span>
-        <!-- mode -->
+            <!-- check boxes -->
+            &nbsp;&nbsp;&nbsp;Gutter <input id="gutter" type="checkbox"/>
+            &nbsp;&nbsp;Whitespace <input id="whitespace" type="checkbox"/>
+            &nbsp;&nbsp;Expand <input id="expand" type="checkbox"/>&nbsp;&nbsp;
+            <!-- check boxes -->
 
-        <!-- theme -->
-        <span class="dropdown">
-            <button class="btn btn-xs btn-default dropdown-toggle" type="button" data-toggle="dropdown">Theme
-                <span class="caret"></span></button>
-            <ul class="dropdown-menu">
-                <li><a href="#" id="light" class="btn btn-default">light</a></li>
-                <li><a href="#" id="tomorrow" class="btn btn-default">tomorrow</a></li>
-                <li><a href="#" id="github" class="btn btn-default">github</a></li>
-                <li class="divider"></li>
-                <li><a href="#" id="dark" class="btn btn-default">dark</a></li>
-                <li><a href="#" id="green" class="btn btn-default">green + black</a></li>
-                <li><a href="#" id="ambiance" class="btn btn-default">ambiance</a></li>
-                <li><a href="#" id="vibrant_ink" class="btn btn-default">vibrant ink</a></li>
-                <li><a href="#" id="terminal" class="btn btn-default">terminal</a></li>
-            </ul>
-        </span>
-        <!-- theme -->
-
-        <!-- size -->
-        <span class="dropdown">
-            <button class="btn btn-xs btn-default dropdown-toggle" type="button" data-toggle="dropdown">font size
-                <span class="caret"></span></button>
-            <ul class="dropdown-menu">
-                <li><a href="#" id="8px" class="btn btn-default">8px</a></li>
-                <li><a href="#" id="12px" class="btn btn-default">12px</a></li>
-                <li><a href="#" id="18px" class="btn btn-default">18px</a></li>
-                <li><a href="#" id="24px" class="btn btn-default">24px</a></li>
-            </ul>
-        </span>
-        <!-- size -->
-
-        <!-- check boxes -->
-        &nbsp;&nbsp;&nbsp;Gutter <input id="gutter" type="checkbox"/>
-        &nbsp;&nbsp;Whitespace <input id="whitespace" type="checkbox"/>
-        &nbsp;&nbsp;Expand <input id="expand" type="checkbox"/>&nbsp;&nbsp;
-        <!-- check boxes -->
-
-        <!-- search -->
-        <input id="select_input" type="text" class="form-inline" placeholder="search param"/>
-        <button id="select_button" type="button" class="btn btn-default btn-xs">highlight</button>
-        <!-- search -->
-
+            <!-- search -->
+            <input id="select_input" type="text" class="form-inline" placeholder="search param"/>
+            <button id="select_button" type="button" class="btn btn-default btn-xs">highlight</button>
+            <!-- search -->
+        </center>
         <!-- hidden for form data -->
         <input id="hidden" th:field="*{code}" type="hidden"/>
         <!-- hidden for form data -->
