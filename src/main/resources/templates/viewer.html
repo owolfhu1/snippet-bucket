@@ -32,9 +32,28 @@
                 <h4 th:text="${snip.languages}"></h4>
 
                 <pre style="width: 100%;"><code th:text="${snip.code}">
-                    public class User {
-                        this.user = something;
+                    @IfYouSeeThis
+                    public class SomethingWentWrong{
+                        private int errorPage = 420;
+                        public String justAnExample = null;
+                        Long leet = 1337;
+                        private ArrayList<String[]> arrays = new ArrayList<>();
+
+                        //do this 5 times!
+                        @SomethingHere("/someString/{stuff}")
+                        public void doItFiveTimes(String thing) {
+                            for (int i = 0; i < 5)
+                                System.out.println(thing);
+                        }
+                        //over-ride some crap..
+                        @Override
+                        private static void anotherMethod(Object... args, SomeShit shit) {
+                            for (Object obj : args)
+                                if (obj.getTheStuffOutOfTheObj(shit).equals("this is an error why are you reading this?"))
+                                    obj.setValue("go away!");
+                        }
                     }
+                    //this is an error message please have a nice day :D
                 </code></pre>
 
                 <!-- delete link in console -->
