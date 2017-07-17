@@ -44,13 +44,13 @@
                             <th:block th:text="${c.body}">body error</th:block>
                         </span>
                         </p>
-                        <!-- show comment id in console incase I want to delete them TODO add this feature -->
+                        <!-- show comment id in console -->
                         <script th:inline="javascript">
                             /*<![CDATA[*/
-                            console.log([[${c.id}]]);
+                            console.log('http://orions-snips.herokuapp.com/deletec/' + [[${c.id}]]);
                             /*]]>*/
                         </script>
-                        <!-- show comment id in console incase I want to delete them -->
+                        <!-- show comment id in console -->
                     </th:block>
                     <form th:object="${comment}" method="POST" action="/comment">
                         <br/>
